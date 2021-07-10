@@ -54,7 +54,7 @@ router.post('/login', checkUsernameAndPasswordNotEmpty, async (req, res, next) =
 	}
 });
 
-router.get('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
 	req.session.destroy(err => {
 		if (err) {
 			next(err);
