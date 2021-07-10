@@ -4,8 +4,13 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
 	{
-		username: { type: String, required: true, unique: true },
+		firstName: { type: String, required: true },
+		lastName: { type: String, required: true },
+		email: { type: String, required: true },
 		hashedPassword: { type: String, required: true },
+		favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
+		favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
+		favouriteLocations: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
 	},
 	{
 		timestamps: {
