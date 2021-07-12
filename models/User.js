@@ -4,20 +4,31 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
 	{
-		firstName: { type: String, required: true },
-		lastName: { type: String, required: true },
-		email: { type: String, required: true },
-		hashedPassword: { type: String }, // required has been remove to test with Postman
+		firstName: {
+			type: String,
+			required: [true, 'Name·is·required.'],
+		},
+		lastName: {
+			type: String,
+			required: [true, 'Last name is required.'],
+		},
+		email: {
+			type: String,
+			required: [true, 'Email is required,'],
+			match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
+			unique: [true, 'This email has already been registered.'],
+			lowercase: true,
+			trim: true,
+		},
+		hashedPassword: {
+			type: String,
+			required: [true, 'Password is required.'],
+		},
 		favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
 		favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
 		favouriteLocations: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
 	},
-	{
-		timestamps: {
-			createdAt: 'created_at',
-			updatedAt: 'updated_at',
-		},
-	}
+	{ timestamps: true }
 );
 
 const User = mongoose.model('User', userSchema);
