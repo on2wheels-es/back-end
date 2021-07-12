@@ -7,7 +7,7 @@ const userSchema = new Schema(
 		firstName: { type: String, required: true },
 		lastName: { type: String, required: true },
 		email: { type: String, required: true },
-		hashedPassword: { type: String, required: true },
+		hashedPassword: { type: String }, // required has been remove to test with Postman
 		favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
 		favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
 		favouriteLocations: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
