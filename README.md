@@ -1,107 +1,167 @@
-# Project Name
+# on2wheels 🚴‍♂️
 
-## Instructions how to start
+## What is on2wheels?
 
-create `.env` file like the example `.env.sample`
+on2wheels is web app that will make any cycling lover life's much easier by helping them to easily organize their trips and stages.
 
-start with `npm run start-dev`
+Simply fill-up the date range when you want to go on a cycling trip, based on that and a thorough data research we will show you the locations with better weather within Spain. Once you choose a location, you will be able to see all the cycling routes you can do on the chosen location.
 
-**http://localhost:5000**
+Have you seen a nice route you want to do? That's easy! Signup and save it in your favourites routes 📌
 
-## Description
+There is even more you can do... but we will let you discover on your own 😉
 
-Describe your project in one/two lines.
-
-## Motivation
-
-Just a litle API for educational purposes.
-
-## User Stories
+## User Stories (MVP)
 
 **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
 
 **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
 
-**Homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup
+**Landing page** - As a user I want to be able to access the landing page so that I see what the app is about and login and signup
 
-**Sign up** - As a user I want to sign up on the webpage so that I can see all the events that I could attend
+**Sign up** - As a user I want to be able to create an account to use the app and save my tasks
 
-**Login** - As a user I want to be able to log in on the webpage so that I can get back to my account
+**Login** - As a user I want to be able to log in on the webpage 
 
-**Logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
+**Logout** - As a user I want to be able to log out from the webpage
 
-**Events list** - As a user I want to see all the events available so that I can choose which ones I want to attend
+**Profile** - As a user I want to be able to see my profile and edit it
 
-**Events create** - As a user I want to create an event so that I can invite others to attend
+**Save a route** - As a user I want to be able to save my favourites routes
 
-**Events detail** - As a user I want to see the event details and attendee list of one event so that I can decide if I want to attend
+**Check my favourites routes** - As a user I want to be able to see my list of favourites routes if I have chosen to save them
 
-**Attend event** - As a user I want to be able to attend to event so that the organizers can count me in
+**Home searchbar** - As a user I want to be able look for routes based on a date range and location (Autonomous Community)
+
+**Locations List** - As a user I want to be able select the location(s) of my preference based on my search
+
+**Locations Page** - As a user I want to be able see the location information: routes, ports, difficulty, location..
+
+**Routes Page** - As a user I want to be able see the route information
 
 ## Backlog
 
-List of other features outside of the MVPs scope
+**Responsive Design** - As a user I want to be able browse the App from all my devices
 
-User profile: - see my profile - upload my profile picture - see other users profile - list of events created by the user - list events the user is attending
+**Sign in with Strava** - As a user I want to be able to sign in with Strava
 
-Geo Location: - add geolocation to events when creating - show event in a map in event detail page - show all events in a map in the event list page
+**Strava Information** - As a user I want to be able to see all my cycling and sports record in my profile
 
-Homepage: - …
+**Add New Route** - As a user I want to be able to add a new route
 
-## ROUTES:
+**Dark Theme** - As a user I want to be able to change to dark theme on the app
 
-### Endpoints
+## Routes
 
-| Method | Path         | description     | Body |
-| :----: | ------------ | --------------- | ---- |
-|  GET   | `/protected` | protected route |      |
-
-### Auth
-
-| Method | Path      | description    | Body                     |
-| :----: | --------- | -------------- | ------------------------ |
-|  GET   | `/whoami` | who am i       |                          |
-|  POST  | `/signup` | signup a user  | `{ username, password }` |
-|  POST  | `/login`  | login a user   | `{ username, password }` |
-|  GET   | `/logout` | logout session |                          |
-
+| Name            | Method | Endpoint                      | Description                                      | Body                                  |   Redirects     |
+| --------------- | ------ | ----------------------------- | ------------------------------------------------ | ------------------------------------- | --------------- |
+| Home            | GET    | /                             | Search for my routes and see all routes availale |                                       |                 |
+| Sign up         | POST   | /signup                       | Sign up a user with an account                   | { mail, username, password }          | /login          |
+| Log in          | POST   | /login                        | Log in the user                                  | { mail, password }                    | /profile        |
+| Logout          | GET    | /logout                       | Logout a user                                    |                                       | /logout         |
+| Profile         | GET    | /profile                      | Get user's profile information                   |                                       |                 |
+| Profile delete  | DELETE | /delete                       | Delete a user's profile                          |                                       | /sign up        |
+| Edit profile    | PUT    | /edit                         | Edit user's profile                              | { mail, username, password, avatar }  | /profile        |
+| Favourites      | GET    | /profile/favourites           | Get user's favourites routes                     |                                       |                 |
+| Me              | GET    | /my                           | Get current user's session                       |                                       |                 |
+| Location        | GET    | /{location-name}              | Get the location page with all info              |                                       |                 |
+| Route           | GET    | /{location-name}/:idRoute     | Get the details of the route                     |                                       |                 |
+| Mountain Pass   | GET    | /{location-name}/:idMountainPass | Get the details of the Mountain Pass          |                                       |                 |
+| Save Route      | POST   | /{location-name}/:idRoute/add | Save route to favourites                         |                                       |                 |
+| Delete Route    | DELETE | /{location-name}/:idRoute/delete | Delete route from favourites                  |                                       |                 |
+| Save Mountain Pass | POST   | /{location-name}/:idMountainPass/add | Save Mountain Pass to favourites       |                                       |                 |
+| Delete Mountain Pass    | DELETE | /{location-name}/:idMountainPass/delete | Delete Mountain Pass from favourites |                                     |                 |
+​
 ## Models
-
+​
+Route model
+​
+```js
+{
+    title: String,
+    description: String,
+    "alpha_name": String,
+    "coords": [Numbers],
+    "start": {lat, long},
+    "ubicacion": String,
+    "nombre": String,
+    "trailrank": Number,
+    "distancia": Number,
+    "desnivel": Number,
+    "dificultad": String,
+    "wikilocRoute": String,
+    "photo1": String,
+    "photo2": String,
+    "photo3": String,
+    "start_lat": Number,
+    "start_long": Number,
+    "mountainPassesIds": [{ type: Schema.Types.ObjectId, ref: 'mountainPasses' }],
+    "municipioId": [{ type: Schema.Types.ObjectId, ref: 'locations' }],
+}
+```
+​
 User model
-
-```javascript
+​
+```js
 {
-	username: String;
-	password: String;
+    firstName: String,
+    lasttName: String,
+    email: String,
+    profilePicture: String,
+    hashedPassword: String,
+    favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
+    favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
+    favouriteLocations: [{ type: Schema.Types.ObjectId, ref: 'Location' }]
 }
 ```
-
-Event model
-
-```javascript
+​
+Locations model
+​
+```js
 {
-	owner: ObjectId<User>
-	name: String
-	description: String
-	date: Date
-	location: String
+    "PROVINCIA": String,
+    "municipio":  String,
+    "POBLACION_MUNI": Number,
+    "SUPERFICIE": Number,
+    "LONGITUD_ETRS89": Number,
+    "LATITUD_ETRS89": Number,
+    "ALTITUD": Number,
+    "municipio_original": String,
+    "radius": Number,
+    "routesIds": [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
+    "numero_rutas": Number,
+    "mountainPassesIds": [{ type: Schema.Types.ObjectId, ref: 'mountainPasses' }],
 }
 ```
+​
+Mountain Passes model
+​
+```js
+{
+    "PROVINCIA": String,
+    "municipio":  String,
+    "LONGITUD_ETRS89": Number,
+    "LATITUD_ETRS89": Number,
+    "ALTITUD": Number,
+    "radius": Number,
+    "routesIds": [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
+    "municipioId": [{ type: Schema.Types.ObjectId, ref: 'locations' }],
+    "numero_rutas": Number,
+    "photo": String,
+}
+```
+## Link
+### Github project
+- [Frontend project]() 
+- [Backend project]()
 
-## Links
+### Deploy links
+- [Frontend deploy]()
 
-### Trello
+### Project kanban
+- [Github projects]()
 
-Link to Trello
-
-### Git
-
-The url to your repository and to your deployed project
-
-[Repository Link](http://github.com/)
-
-[Deploy Link](http://heroku.com/)
+### Wireframes 
+- [InVision with Wireframes]()
 
 ### Slides
-
-[Slides Link](http://slides.com/)
+- [Slides]()
