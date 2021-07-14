@@ -76,37 +76,35 @@ There is even more you can do... but we will let you discover on your own 😉
 Route model
 ​
 ```js
-{
-    title: String,
-    description: String,
-    "alpha_name": String,
-    "start": {lat, long},
-    "ubicacion": String,
-    "nombre": String,
-    "trailrank": Number,
-    "distancia": Number,
-    "desnivel": Number,
-    "dificultad": String,
-    "wikilocRoute": String,
-    "photo1": String,
-    "photo2": String,
-    "photo3": String,
-    "start_lat": Number,
-    "start_long": Number,
-    "mountainPassesIds": [{ type: Schema.Types.ObjectId, ref: 'mountainPasses' }],
-    "municipioId": [{ type: Schema.Types.ObjectId, ref: 'locations' }],
-    "coords":{
-         type: { type: String, "enum": [
-            "Point",
-            "MultiPoint",
-            "LineString",
-            "MultiLineString",
-            "Polygon",
-            "MultiPolygon"
-        ] },
-        coordinates: { type: Array }
-        }
-}
+	{
+		_id: { type: Schema.Types.ObjectId },
+		title: String,
+		description: String,
+		alpha_name: String,
+		location: String,
+		name: String,
+		trailrank: Number,
+		distance: Number,
+		gradient: Number,
+		difficulty: String,
+		wikilocRoute: String,
+		photo1: String,
+		photo2: String,
+		photo3: String,
+		start_latitude: Number,
+		start_longitude: Number,
+		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
+		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
+		geolocation: {
+			type: {
+				type: String,
+				default: 'Polygon',
+			},
+			coordinates: Array,
+		},
+	},
+	{ timestamps: true }
+);
 ```
 ​
 User model
