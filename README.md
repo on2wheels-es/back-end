@@ -80,7 +80,6 @@ Route model
     title: String,
     description: String,
     "alpha_name": String,
-    "coords": [Numbers],
     "start": {lat, long},
     "ubicacion": String,
     "nombre": String,
@@ -96,6 +95,17 @@ Route model
     "start_long": Number,
     "mountainPassesIds": [{ type: Schema.Types.ObjectId, ref: 'mountainPasses' }],
     "municipioId": [{ type: Schema.Types.ObjectId, ref: 'locations' }],
+    "coords":{
+         type: { type: String, "enum": [
+            "Point",
+            "MultiPoint",
+            "LineString",
+            "MultiLineString",
+            "Polygon",
+            "MultiPolygon"
+        ] },
+        coordinates: { type: Array }
+        }
 }
 ```
 ​
