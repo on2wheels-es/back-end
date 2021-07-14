@@ -1,20 +1,19 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-puerto	provincia	pueblo	altitud	desnivel	distancia	pendiente	coeficiente	url	coords
 
 const mountainPassSchema = new Schema(
 	{
 		_id: { type: Schema.Types.ObjectId },
 		name: String,
-        province: String,
+		province: String,
 		municipality: String,
 		altitude: Number,
 		gradient: Number,
 		distance: Number,
-        mountain_slope: Number,
-        coefficient: Number,
-        url: String,
+		mountain_slope: Number,
+		coefficient: Number,
+		url: String,
 		photo: String,
 		geolocation: {
 			type: {
@@ -23,7 +22,7 @@ const mountainPassSchema = new Schema(
 			},
 			coordinates: Array,
 		},
-        routes_ids: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
+		routes_ids: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
 		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
 	},
 	{ timestamps: true }
