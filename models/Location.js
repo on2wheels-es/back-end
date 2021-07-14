@@ -10,12 +10,17 @@ const locationSchema = new Schema(
 		municipality_original_name: String,
 		municipality_inhabitants: Number,
 		geographic_area: Number,
-		longitude: Number,
-		latitude: Number,
 		radius: Number,
 		routes_number: Number,
 		routes_ids: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
-		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
+		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPass' }],
+		geolocation: {
+			type: {
+				type: String,
+				default: 'Point',
+			},
+			coordinates: Array,
+		},
 	},
 	{ timestamps: true }
 );

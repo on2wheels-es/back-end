@@ -20,12 +20,12 @@ const routesSchema = new Schema(
 		photo3: String,
 		start_latitude: Number,
 		start_longitude: Number,
-		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
-		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
+		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPass' }],
+		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
 		geolocation: {
 			type: {
 				type: String,
-				default: 'Polygon',
+				default: 'LineString',
 			},
 			coordinates: Array,
 		},
