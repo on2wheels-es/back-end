@@ -13,5 +13,3 @@ originalMountainPasses.map(mountainPass => {
 
 const file = JSON.stringify(originalMountainPasses);
 fs.writeFileSync('./MountainPassesDB.json', file);
-
-//mongoimport --uri mongodb+srv://laialloret:laialloret@on2wheels.hns8v.mongodb.net/on2wheels  --collection mountainPasses  --jsonArray  --file /Users/laialloret/Downloads/MountainPassesDB.json
