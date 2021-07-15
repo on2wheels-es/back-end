@@ -4,33 +4,44 @@ const { Schema } = mongoose;
 
 const routesSchema = new Schema(
 	{
-		_id: { type: Schema.Types.ObjectId },
-		title: String,
-		description: String,
-		alpha_name: String,
-		location: String,
+		_id: Number,
+		ID: Number,
 		name: String,
+		ccaa: String,
+		province: String,
+		start: {
+			type: {
+				type: String,
+				default: 'Point',
+			},
+			coordinates: Array,
+		},
+		midpoint: {
+			type: {
+				type: String,
+				default: 'Point',
+			},
+			coordinates: Array,
+		},
 		trailrank: Number,
 		distance: Number,
 		gradient: Number,
-		difficulty: String,
-		wikilocRoute: String,
-		photo1: String,
-		photo2: String,
-		photo3: String,
-		start_latitude: Number,
-		start_longitude: Number,
-		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPass' }],
-		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
-		geolocation: {
+		min_alt: Number,
+		max_alt: Number,
+		municipality: String,
+		url: String,
+		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
+		municipalities_ids: [{ type: Number, ref: 'Municipalities' }],
+		coords: {
 			type: {
 				type: String,
 				default: 'LineString',
 			},
 			coordinates: Array,
 		},
+		alt: [Number],
 	},
-	{ timestamps: true }
+	{ timestamps: true, collection: 'routes' }
 );
 
 const Routes = mongoose.model('Routes', routesSchema);

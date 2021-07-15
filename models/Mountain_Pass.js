@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 
 const mountainPassSchema = new Schema(
 	{
-		_id: { type: Schema.Types.ObjectId },
+		_id: Number,
+		ID: Number,
 		name: String,
 		province: String,
 		municipality: String,
@@ -12,22 +13,20 @@ const mountainPassSchema = new Schema(
 		gradient: Number,
 		distance: Number,
 		mountain_slope: Number,
-		coefficient: Number,
+		technical_difficulty: Number,
 		url: String,
 		photo: String,
-		geolocation: {
+		peak_coords: {
 			type: {
 				type: String,
 				default: 'Point',
 			},
 			coordinates: Array,
 		},
-		routes_ids: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
-		locations_ids: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
 	},
-	{ timestamps: true }
+	{ timestamps: true, collection: 'mountainPasses' }
 );
 
-const MountainPass = mongoose.model('MountainPass', mountainPassSchema);
+const MountainPass = mongoose.model('MountainPasses', mountainPassSchema);
 
 module.exports = MountainPass;
