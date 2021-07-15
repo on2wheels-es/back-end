@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const locationSchema = new Schema(
+const municipalitySchema = new Schema(
 	{
-		_id: { type: Schema.Types.ObjectId },
+		_id: Number,
 		province: String,
 		municipality: String,
 		municipality_original_name: String,
@@ -12,9 +12,9 @@ const locationSchema = new Schema(
 		geographic_area: Number,
 		radius: Number,
 		routes_number: Number,
-		routes_ids: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
-		mountainPasses_ids: [{ type: Schema.Types.ObjectId, ref: 'MountainPass' }],
-		geolocation: {
+		routes_ids: [{ type: Number, ref: 'Routes' }],
+		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
+		coords: {
 			type: {
 				type: String,
 				default: 'Point',
@@ -22,9 +22,9 @@ const locationSchema = new Schema(
 			coordinates: Array,
 		},
 	},
-	{ timestamps: true }
+	{ timestamps: true, collection: 'municipalities' }
 );
 
-const Location = mongoose.model('Location', locationSchema);
+const Municipalities = mongoose.model('Municipalities', municipalitySchema);
 
-module.exports = Location;
+module.exports = Municipalities;
