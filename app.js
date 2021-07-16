@@ -11,7 +11,8 @@ require('dotenv').config();
 
 const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
-const routesRouter = require('./routes/routes');
+const bikeRoutesRouter = require('./routes/bikeRoutes');
+const mountainPassesRouter = require('./routes/mountainPasses');
 
 async function setupApp() {
 	const app = express();
@@ -43,7 +44,9 @@ async function setupApp() {
 	);
 
 	app.use('/', authRouter);
-	app.use('/routes', routesRouter);
+	app.use('/routes', bikeRoutesRouter);
+	app.use('/mountainPasses', mountainPassesRouter);
+	app.use('/municipalities', bikeRoutesRouter);
 	app.use('/protected', demoRouter);
 
 	// catch 404 and forward to error handler
