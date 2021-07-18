@@ -2,7 +2,7 @@
 const csvtojson = require('csvtojson');
 const mongodb = require('mongodb');
 
-const url = 'mongodb+srv://laialloret:laialloret@on2wheels.hns8v.mongodb.net/on2wheels ';
+const url = process.env.MONGODB_URI;
 
 let dbConn;
 mongodb.MongoClient.connect(url, {
