@@ -5,9 +5,9 @@ const { Schema } = mongoose;
 const municipalitySchema = new Schema(
 	{
 		_id: Number,
-		province: String,
 		municipality: String,
-		municipality_original_name: String,
+		ccaa: String,
+		province: String,
 		municipality_inhabitants: Number,
 		geographic_area: Number,
 		radius: Number,

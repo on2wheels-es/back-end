@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 const mountainPassSchema = new Schema(
 	{
 		_id: Number,
-		ID: Number,
 		name: String,
 		province: String,
 		municipality: String,
@@ -15,7 +14,6 @@ const mountainPassSchema = new Schema(
 		mountain_slope: Number,
 		technical_difficulty: Number,
 		url: String,
-		photo: String,
 		peak_coords: {
 			type: {
 				type: String,
@@ -23,6 +21,7 @@ const mountainPassSchema = new Schema(
 			},
 			coordinates: Array,
 		},
+		photo: String,
 	},
 	{ timestamps: true, collection: 'mountainPasses' }
 );
