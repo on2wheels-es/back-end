@@ -5,8 +5,8 @@ const Municipality = require('../models/Municipality');
 
 router.get('/', async (req, res, next) => {
 	try {
-		const routes = await Municipality.find();
-		res.json(routes);
+		const municipality = await Municipality.find();
+		res.json(municipality);
 	} catch (e) {
 		next(e);
 	}
@@ -16,8 +16,8 @@ router.get('/:id', async (req, res, next) => {
 	const { id } = req.params;
 
 	try {
-		const route = await Municipality.findById(id);
-		res.json(route);
+		const municipality = await Municipality.findById(id);
+		res.json(municipality);
 	} catch (e) {
 		next(e);
 	}
