@@ -21,6 +21,18 @@ router.get('/popular', async (req, res, next) => {
 	}
 });
 
+router.get('/results', async (req, res, next) => {
+	const { apiIds } = req.body;
+
+	try {
+		const municipality = await Municipality.find({ _id: { $in: apiIds } });
+		res.json(municipality);
+	} catch (e) {
+		next(e);
+	}
+});
+
+
 router.get('/:id', async (req, res, next) => {
 	const { id } = req.params;
 
