@@ -21,7 +21,7 @@ router.get('/popular', async (req, res, next) => {
 	}
 });
 
-router.get('/results', async (req, res, next) => {
+router.post('/results', async (req, res, next) => {
 	const { apiIds } = req.body;
 
 	try {
