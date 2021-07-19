@@ -5,8 +5,17 @@ const MountainPass = require('../models/MountainPass');
 
 router.get('/', async (req, res, next) => {
 	try {
-		const routes = await MountainPass.find();
-		res.json(routes);
+		const mountainPasses = await MountainPass.find();
+		res.json(mountainPasses);
+	} catch (e) {
+		next(e);
+	}
+});
+
+router.get('/popular', async (req, res, next) => {
+	try {
+		const mountainPasses = await MountainPass.aggregate([{ $sample: { size: 8 } }]);
+		res.json(mountainPasses);
 	} catch (e) {
 		next(e);
 	}
@@ -16,8 +25,8 @@ router.get('/:id', async (req, res, next) => {
 	const { id } = req.params;
 
 	try {
-		const route = await MountainPass.findById(id);
-		res.json(route);
+		const mountainPass = await MountainPass.findById(id);
+		res.json(mountainPass);
 	} catch (e) {
 		next(e);
 	}

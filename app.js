@@ -13,7 +13,7 @@ const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
 const bikeRoutesRouter = require('./routes/bikeRoutes');
 const mountainPassesRouter = require('./routes/mountainPasses');
-const MunicipalitiesRouter = require('./routes/Municipalities');
+const MunicipalitiesRouter = require('./routes/municipalities');
 
 async function setupApp() {
 	const app = express();

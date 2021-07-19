@@ -12,6 +12,15 @@ router.get('/', async (req, res, next) => {
 	}
 });
 
+router.get('/popular', async (req, res, next) => {
+	try {
+		const municipality = await Municipality.aggregate([{ $sample: { size: 8 } }]);
+		res.json(municipality);
+	} catch (e) {
+		next(e);
+	}
+});
+
 router.get('/:id', async (req, res, next) => {
 	const { id } = req.params;
 
