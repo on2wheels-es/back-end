@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const Route = require('../models/Route');
+const Municipality = require('../models/Municipality');
+
 
 router.get('/', async (req, res, next) => {
 	try {
@@ -17,7 +19,8 @@ router.get('/:id', async (req, res, next) => {
 
 	try {
 		const route = await Route.findById(id).populate('mountain_passes_ids');
-		res.json(route);
+		const municipalities = await Municipality.find({ routes_ids: id });
+		res.json({ route, municipalities });
 	} catch (e) {
 		next(e);
 	}

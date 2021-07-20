@@ -32,7 +32,7 @@ const routesSchema = new Schema(
 		url: String,
 		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
 		municipalities_ids: [{ type: Number, ref: 'Municipalities' }],
-		coords: {
+		coordinates: {
 			type: {
 				type: String,
 				default: 'LineString',

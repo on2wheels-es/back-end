@@ -37,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
 	const { id } = req.params;
 
 	try {
-		const municipality = await Municipality.findById(id);
+		const municipality = await Municipality.findById(id).populate('routes_ids');
 		res.json(municipality);
 	} catch (e) {
 		next(e);
