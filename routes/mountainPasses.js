@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const MountainPass = require('../models/MountainPass');
+const Route = require('../models/Route');
+const Municipality = require('../models/Municipality');
 
 router.get('/', async (req, res, next) => {
 	try {
@@ -26,7 +28,13 @@ router.get('/:id', async (req, res, next) => {
 
 	try {
 		const mountainPass = await MountainPass.findById(id);
-		res.json(mountainPass);
+		const routes = await Route.find({ mountain_passes_ids: { $in: [id] } });
+
+		const routesIds = routes.map(route => route._id);
+		const municipalities = await Municipality.find({ routes_ids: { $in: routesIds } });
+		const uniqueMunicipalities = Array.from(new Set(municipalities)); // removes possible duplicates in the muncicipalities array
+
+		res.json({ mountainPass, routes, uniqueMunicipalities });
 	} catch (e) {
 		next(e);
 	}
