@@ -39,7 +39,6 @@ mongodb.MongoClient.connect(url, {
 					};
 					arrayToInsert.push(oneRow);
 				}
-				console.log(dbConn);
 				const collectionName = 'municipalities';
 				const collection = dbConn.collection(collectionName);
 				collection.insertMany(arrayToInsert, (err, result) => {

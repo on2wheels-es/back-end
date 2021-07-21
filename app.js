@@ -13,7 +13,8 @@ const authRouter = require('./routes/auth');
 const demoRouter = require('./routes/demo');
 const bikeRoutesRouter = require('./routes/bikeRoutes');
 const mountainPassesRouter = require('./routes/mountainPasses');
-const MunicipalitiesRouter = require('./routes/municipalities');
+const municipalitiesRouter = require('./routes/municipalities');
+const resultsRouter = require('./routes/results');
 
 async function setupApp() {
 	const app = express();
@@ -45,9 +46,10 @@ async function setupApp() {
 	);
 
 	app.use('/', authRouter);
+	app.use('/', resultsRouter);
 	app.use('/routes', bikeRoutesRouter);
 	app.use('/mountainPasses', mountainPassesRouter);
-	app.use('/municipalities', MunicipalitiesRouter);
+	app.use('/municipalities', municipalitiesRouter);
 	app.use('/protected', demoRouter);
 
 	// catch 404 and forward to error handler
