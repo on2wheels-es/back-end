@@ -4,7 +4,6 @@ const router = express.Router();
 const Route = require('../models/Route');
 const Municipality = require('../models/Municipality');
 
-
 router.get('/', async (req, res, next) => {
 	try {
 		const routes = await Route.find().populate('mountain_passes_ids');
