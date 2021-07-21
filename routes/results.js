@@ -5,7 +5,7 @@ const Municipality = require('../models/Municipality');
 
 router.get('/search', async (req, res, next) => {
 	try {
-		const municipality = await Municipality.find().limit(8);
+		const municipality = await Municipality.find().limit(6);
 		res.json(municipality);
 	} catch (e) {
 		next(e);
