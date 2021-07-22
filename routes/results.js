@@ -1,9 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
+
 const Municipality = require('../models/Municipality');
-const url = require('url');
-const querystring = require('querystring')
 
 router.get('/search', async (req, res, next) => {
 	try {
