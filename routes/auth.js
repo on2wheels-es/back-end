@@ -37,6 +37,30 @@ router.post('/signup', checkUsernameAndPasswordNotEmpty, async (req, res, next) 
 	}
 });
 
+router.patch('/add-profile-details', async (req, res, next) => {
+	const { firstName, lastName, birthday, gender } = req.body;
+	const { _id } = req.session.currentUser;
+
+	try {
+		const user = await User.findByIdAndUpdate(
+			_id,
+			{
+				firstName,
+				lastName,
+				birthday,
+				gender,
+			},
+			{
+				new: true,
+			}
+		);
+		req.session.currentUser = user;
+		return res.json(user);
+	} catch (error) {
+		return next(error);
+	}
+});
+
 router.post('/login', checkUsernameAndPasswordNotEmpty, async (req, res, next) => {
 	const { email, password } = res.locals.auth;
 	try {
