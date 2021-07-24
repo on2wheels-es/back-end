@@ -6,11 +6,9 @@ const userSchema = new Schema(
 	{
 		firstName: {
 			type: String,
-			required: [true, 'Name·is·required.'],
 		},
 		lastName: {
 			type: String,
-			required: [true, 'Last name is required.'],
 		},
 		email: {
 			type: String,
@@ -22,14 +20,13 @@ const userSchema = new Schema(
 		},
 		municipality: {
 			type: String,
-			required: [true, 'Municipality is required.'],
 		},
 		hashedPassword: {
 			type: String,
 			required: [true, 'Password is required.'],
 		},
 		birthday: String,
-		gender: { 
+		gender: {
 			type: String,
 			enum: ['Hombre', 'Mujer', 'Otros'],
 		},
