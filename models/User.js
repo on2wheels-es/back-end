@@ -30,9 +30,9 @@ const userSchema = new Schema(
 			type: String,
 			enum: ['Hombre', 'Mujer', 'Otros'],
 		},
-		favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
-		favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
-		favouriteLocations: [{ type: Schema.Types.ObjectId, ref: 'Locations' }],
+		favouriteRoutes: [{ type: Number, ref: 'Routes' }],
+		favouritePasses: [{ type: Number, ref: 'MountainPasses' }],
+		favouriteLocations: [{ type: Number, ref: 'Locations' }],
 	},
 	{ timestamps: true }
 );
