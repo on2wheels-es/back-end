@@ -20,9 +20,18 @@ const userSchema = new Schema(
 			lowercase: true,
 			trim: true,
 		},
+		municipality: {
+			type: String,
+			required: [true, 'Municipality is required.'],
+		},
 		hashedPassword: {
 			type: String,
 			required: [true, 'Password is required.'],
+		},
+		birthday: String,
+		gender: { 
+			type: String,
+			enum: ['Hombre', 'Mujer', 'Otros'],
 		},
 		favouriteRoutes: [{ type: Schema.Types.ObjectId, ref: 'Routes' }],
 		favouritePasses: [{ type: Schema.Types.ObjectId, ref: 'MountainPasses' }],
