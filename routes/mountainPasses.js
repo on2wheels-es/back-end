@@ -28,6 +28,7 @@ router.get('/:id', async (req, res, next) => {
 
 	try {
 		const mountainPass = await MountainPass.findById(id);
+
 		const routes = await Route.find({ mountain_passes_ids: { $in: [id] } });
 
 		const municipalities = await Municipality.find({ mountain_passes_ids: { $in: [id] } });
