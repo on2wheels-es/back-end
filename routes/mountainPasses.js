@@ -30,8 +30,7 @@ router.get('/:id', async (req, res, next) => {
 		const mountainPass = await MountainPass.findById(id);
 		const routes = await Route.find({ mountain_passes_ids: { $in: [id] } });
 
-		const routesIds = routes.map(route => route._id);
-		const municipalities = await Municipality.find({ routes_ids: { $in: routesIds } });
+		const municipalities = await Municipality.find({ mountain_passes_ids: { $in: [id] } });
 		const uniqueMunicipalities = Array.from(new Set(municipalities)); // removes possible duplicates in the muncicipalities array
 
 		res.json({ mountainPass, routes, uniqueMunicipalities });

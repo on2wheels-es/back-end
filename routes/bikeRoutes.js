@@ -6,7 +6,7 @@ const Municipality = require('../models/Municipality');
 
 router.get('/', async (req, res, next) => {
 	try {
-		const routes = await Route.find().populate('mountain_passes_ids');
+		const routes = await Route.find().populate('mountain_passes_ids').populate('municipalities');
 		res.json(routes);
 	} catch (e) {
 		next(e);
