@@ -31,6 +31,7 @@ const routesSchema = new Schema(
 		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
 		municipalities_ids: [{ type: Number, ref: 'Municipalities' }],
 		difficulty_score: Number,
+		gpx: String,
 	},
 	{ timestamps: true, collection: 'routes' }
 );
