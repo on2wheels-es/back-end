@@ -14,6 +14,7 @@ const municipalitySchema = new Schema(
 		routes_number: Number,
 		routes_ids: [{ type: Number, ref: 'Routes' }],
 		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
+		python_coords: String,
 		coords: {
 			type: {
 				type: String,

@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 const routesSchema = new Schema(
 	{
 		_id: Number,
-		ID: Number,
 		name: String,
 		ccaa: String,
 		province: String,
@@ -29,17 +28,9 @@ const routesSchema = new Schema(
 		min_alt: Number,
 		max_alt: Number,
 		municipality: String,
-		url: String,
 		mountain_passes_ids: [{ type: Number, ref: 'MountainPasses' }],
 		municipalities_ids: [{ type: Number, ref: 'Municipalities' }],
-		coordinates: {
-			type: {
-				type: String,
-				default: 'LineString',
-			},
-			coordinates: Array,
-		},
-		alt: [Number],
+		difficulty_score: Number,
 	},
 	{ timestamps: true, collection: 'routes' }
 );
