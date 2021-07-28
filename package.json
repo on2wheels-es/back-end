@@ -17,12 +17,13 @@
 		"express": "^4.17.1",
 		"express-session": "^1.17.2",
 		"fs": "^0.0.1-security",
+		"gpxparser": "^3.0.8",
 		"http-errors": "^1.7.2",
 		"mongodb": "^3.6.5",
 		"mongoose": "^5.13.2",
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.12",
-		"xmldom": "^0.6.0"
+		"request": "^2.88.2"
 	},
 	"devDependencies": {
 		"eslint": "^7.30.0",

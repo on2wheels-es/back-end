@@ -25,35 +25,6 @@ router.patch('/addToFavourites/:id/:type', async (req, res, next) => {
 	}
 });
 
-router.post('/checkIfFav', async (req, res, next) => {
-	const { id, type, userID } = req.body;
-	try {
-		if (type === 'mountainPasses') {
-			const user = await User.findById(userID);
-			if (user.favouritePasses.includes(id)) {
-				return res.json({ isFavourited: true });
-			}
-			return res.json({ isFavourited: false });
-		}
-		if (type === 'routes') {
-			const user = await User.findById(userID);
-			if (user.favouriteRoutes.includes(id)) {
-				return res.json({ isFavourited: true });
-			}
-			return res.json({ isFavourited: false });
-		}
-		if (type === 'municipality') {
-			const user = await User.findById(userID);
-			if (user.favouriteLocations.includes(id)) {
-				return res.json({ isFavourited: true });
-			}
-			return res.json({ isFavourited: false });
-		}
-	} catch (error) {
-		return next(error);
-	}
-});
-
 router.patch('/removeFromFavourites/:id/:type', async (req, res, next) => {
 	const { id, type } = req.params;
 	const { userID } = req.body;
