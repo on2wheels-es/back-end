@@ -33,6 +33,7 @@ const userSchema = new Schema(
 		favouriteRoutes: [{ type: Number, ref: 'Routes' }],
 		favouritePasses: [{ type: Number, ref: 'MountainPasses' }],
 		favouriteLocations: [{ type: Number, ref: 'Locations' }],
+		profileComplete: Boolean,
 	},
 	{ timestamps: true }
 );
