@@ -10,9 +10,12 @@ const bcryptSalt = 10;
 
 const router = express.Router();
 
-router.get('/whoami', (req, res, next) => {
+router.get('/whoami', async (req, res, next) => {
 	if (req.session.currentUser) {
-		res.status(200).json(req.session.currentUser);
+		// eslint-disable-next-line no-underscore-dangle
+		const user = await User.findById(req.session.currentUser._id);
+		req.session.currentUser = user;
+		res.status(200).json(user);
 	} else {
 		next(createError(401));
 	}
