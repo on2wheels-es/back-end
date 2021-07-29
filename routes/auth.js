@@ -37,18 +37,20 @@ router.post('/signup', checkUsernameAndPasswordNotEmpty, async (req, res, next) 
 	}
 });
 
-router.patch('/add-profile-details', async (req, res, next) => {
-	const { firstName, lastName, birthday, gender } = req.body;
+router.patch('/update-profile', async (req, res, next) => {
 	const { _id } = req.session.currentUser;
+	const key = Object.keys(req.body);
+	const updatesFields = {};
+
+	for (let i = 0; i < key.length; i += 1) {
+		updatesFields[key[i]] = Object.values(req.body)[i]
+	}
 
 	try {
 		const user = await User.findByIdAndUpdate(
 			_id,
 			{
-				firstName,
-				lastName,
-				birthday,
-				gender,
+				$set: updatesFields,
 			},
 			{
 				new: true,

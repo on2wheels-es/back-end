@@ -26,6 +26,9 @@ const userSchema = new Schema(
 			required: [true, 'Password is required.'],
 		},
 		birthday: String,
+		dayOfBirth: Number,
+		monthOfBirth: Number,
+		yearOfBirth: Number,
 		gender: {
 			type: String,
 			enum: ['Hombre', 'Mujer', 'Otros'],
