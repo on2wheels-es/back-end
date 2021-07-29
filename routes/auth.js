@@ -43,7 +43,7 @@ router.patch('/update-profile', async (req, res, next) => {
 	const updatesFields = {};
 
 	for (let i = 0; i < key.length; i += 1) {
-		updatesFields[key[i]] = Object.values(req.body)[i]
+		updatesFields[key[i]] = Object.values(req.body)[i];
 	}
 
 	try {
