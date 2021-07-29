@@ -16,10 +16,8 @@ router.patch('/addToFavourites/:id/:type', async (req, res, next) => {
 			const user = await User.findByIdAndUpdate(userID, { $push: { favouriteRoutes: id } }, { new: true });
 			return res.json(user);
 		}
-		if (type === 'municipality') {
-			const user = await User.findByIdAndUpdate(userID, { $push: { favouriteLocations: id } }, { new: true });
-			return res.json(user);
-		}
+		const user = await User.findByIdAndUpdate(userID, { $push: { favouriteLocations: id } }, { new: true });
+		return res.json(user);
 	} catch (error) {
 		return next(error);
 	}

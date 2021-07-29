@@ -16,6 +16,7 @@ const mountainPassesRouter = require('./routes/mountainPasses');
 const municipalitiesRouter = require('./routes/municipalities');
 const resultsRouter = require('./routes/results');
 const favouritesRouter = require('./routes/favourites');
+const usersRouter = require('./routes/users');
 
 async function setupApp() {
 	const app = express();
@@ -49,6 +50,7 @@ async function setupApp() {
 	app.use('/', authRouter);
 	app.use('/', resultsRouter);
 	app.use('/', favouritesRouter);
+	app.use('/', usersRouter);
 	app.use('/routes', bikeRoutesRouter);
 	app.use('/mountainPasses', mountainPassesRouter);
 	app.use('/municipalities', municipalitiesRouter);
