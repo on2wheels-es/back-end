@@ -9,7 +9,7 @@ router.post('/search', (req, res, next) => {
 	const { middleDateForApiRequest, idsForApiRequest } = req.body;
 
 	axios
-		.get(`http://www.on2wheels.es/api/weather?${middleDateForApiRequest}&ccaa=${idsForApiRequest}`)
+		.get(`http://www.on2wheels.es/api/weather?${middleDateForApiRequest}&ccaa=[${idsForApiRequest}]`)
 		.then(response => {
 			const { destination } = response.data;
 
@@ -18,7 +18,8 @@ router.post('/search', (req, res, next) => {
 					res.json(municipalities);
 				})
 				.catch(error => next(error));
-		});
+		})
+		.catch(error => next(error));
 });
 
 module.exports = router;
