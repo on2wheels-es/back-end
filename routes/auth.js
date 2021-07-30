@@ -24,9 +24,13 @@ router.get('/whoami', async (req, res, next) => {
 router.post('/signup', checkUsernameAndPasswordNotEmpty, async (req, res, next) => {
 	const { email, password } = res.locals.auth;
 	try {
+		if (!email || !password) {
+			return next(createError(422));
+		}
+
 		const user = await User.findOne({ email });
 		if (user) {
-			return next(createError(422));
+			return next(createError(409));
 		}
 
 		const salt = bcrypt.genSaltSync(bcryptSalt);
